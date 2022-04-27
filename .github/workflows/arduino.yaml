@@ -19,22 +19,14 @@ jobs:
       - name: Install Arduino CLI
         uses: arduino/setup-arduino-cli@v1.1.1
 
-      - name: Install ESP8266
+      - name: Install Dependencies
         run: |
           arduino-cli core update-index
           arduino-cli core install esp8266:esp8266
-
-      - name: Install AirGradient Library
-        run: |
           arduino-cli lib install "AirGradient Air Quality Sensor"
-
-      - name: Install SSD1306 Display Library
-        run: |
           arduino-cli lib install "ESP8266 and ESP32 OLED driver for SSD1306 displays"
-
-      - name: Install WiFiManager Library
-        run: |
           arduino-cli lib install "WiFiManager"
+          arduino-cli lib install "ArduinoJson"
 
       - name: Compile Sketch
         run: arduino-cli compile --fqbn esp8266:esp8266:d1_mini ./airgradient-zabbix
